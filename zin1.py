@@ -621,7 +621,7 @@ class Messenger:
                 mentions_data.append({"id": tag_id, "tag": tag_name})
                 full_message += f" @{tag_name}"
             self.send_typing_indicator(thread_id, True)
-            time.sleep(1)
+            time.sleep(0)
             success = self.mqtt_manager.send_message_with_mentions(thread_id, full_message, mentions_data)
             self.send_typing_indicator(thread_id, False)
             return "success" if success else "failed"
