@@ -84,7 +84,7 @@ def print_gradient(text):
 
 def print_banner():
     banner_text = pyfiglet.figlet_format("ZIN", font="slant")
-    copyright_line = "     ZIN THIÊN ĐẠO - VĨNH HẰNG CHÍ TÔN\n"
+    copyright_line = "     ZIN THIÊN ĐẠO - VĨNH HẰNG NHÂY TAG\n"
     full_banner = banner_text + copyright_line
     print_gradient(full_banner)
 
