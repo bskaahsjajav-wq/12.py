@@ -148,17 +148,6 @@ class Messenger:
             return False, "CONNECTION_ERROR"
 
 
-def load_file(file_path):
-    try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            content = f.read()  
-        if not content.strip():
-            raise Exception(f"File {file_path} trống!")
-        return content
-    except Exception as e:
-        raise Exception(f"Lỗi đọc file {file_path}: {str(e)}")
-
-
 def messenger_worker(cookie, recipient_id, message, delay):
     try:
         messenger = Messenger(cookie)
@@ -224,11 +213,14 @@ def main():
     
     print(f"{COLOR_DEFAULT}=== Bắt đầu chạy ==={trang}")
     
-    # In banner với tên mới
+    # In banner
     print_rainbow_banner(" ZIN - Vĩnh Hằng Sàn Treo ")
     
     # Bước 1: Nhập cookie trực tiếp
-    print(f"{COLOR_INFO}Nhập cookie của bạn (paste trực tiếp, nhập 'done' để kết thúc):{trang}")
+    print(f"{COLOR_INFO}Nhập cookie của bạn (paste trực tiếp):{trang}")
+    print(f"{COLOR_INFO}Ví dụ: sb=xxx; datr=xxx; c_user=123456; xs=xxx{trang}")
+    print(f"{COLOR_INFO}Nhập 'done' khi đã nhập xong tất cả cookie{trang}")
+    
     cookies = []
     cookie_count = 1
     while True:
@@ -240,22 +232,22 @@ def main():
             break
         if cookie_input:
             cookies.append(cookie_input)
-            print(f"{COLOR_SUCCESS}Đã thêm cookie {cookie_count}{trang}")
+            print(f"{COLOR_SUCCESS}✓ Đã thêm cookie {cookie_count}{trang}")
             cookie_count += 1
         else:
             print(f"{COLOR_ERROR}Cookie không được để trống!{trang}")
     
-    print(f"{COLOR_SUCCESS}Đã nhập tổng cộng {len(cookies)} cookie{trang}")
+    print(f"{COLOR_SUCCESS}✓ Đã nhập tổng cộng {len(cookies)} cookie{trang}")
     
     # Bước 2: Nhập ID box
     while True:
-        recipient_id = input(f"{COLOR_INPUT}Nhập ID box: {trang}").strip()
+        recipient_id = input(f"{COLOR_INPUT}Nhập ID box (ví dụ: 123456789): {trang}").strip()
         if recipient_id.isdigit():
             break
         print(f"{COLOR_ERROR}ID box phải là số!{trang}")
     
     # Bước 3: Nhập nội dung tin nhắn
-    message = input(f"{COLOR_INPUT}Nhập nội dung tin nhắn: {trang}")
+    message = input(f"{COLOR_INPUT}Nhập nội dung tin nhắn (ví dụ: Xin chào!): {trang}")
     while not message.strip():
         print(f"{COLOR_ERROR}Nội dung không được để trống!{trang}")
         message = input(f"{COLOR_INPUT}Nhập nội dung tin nhắn: {trang}")
@@ -263,11 +255,12 @@ def main():
     # Bước 4: Nhập delay cho từng cookie
     per_cookie_delays = []
     
-    print(f"\n{COLOR_INFO}Nhập delay cho từng cookie:{trang}")
+    print(f"\n{COLOR_INFO}Nhập delay cho từng cookie (số giây nghỉ giữa các lần gửi):{trang}")
+    print(f"{COLOR_INFO}Ví dụ: 60 (nghỉ 60 giây){trang}")
     for i in range(len(cookies)):
         while True:
             try:
-                d = float(input(f"{COLOR_INPUT}Delay cho cookie {i+1}: {trang}").strip())
+                d = float(input(f"{COLOR_INPUT}Delay cho cookie {i+1} (giây): {trang}").strip())
                 if d <= 0:
                     raise ValueError
                 per_cookie_delays.append(d)
@@ -276,7 +269,7 @@ def main():
                 print(f"{COLOR_ERROR}Delay phải là số dương!{trang}")
 
     
-    print(f"\n{COLOR_DEFAULT}Bắt đầu gửi tin nhắn với {len(cookies)} acc...{trang}")
+    print(f"\n{COLOR_DEFAULT}=== Bắt đầu gửi tin nhắn với {len(cookies)} acc ==={trang}")
     
     
     threads = []
@@ -299,7 +292,7 @@ def main():
             time.sleep(1)
     except KeyboardInterrupt:
         
-        print(f"\n{COLOR_DEFAULT}Đã dừng chương trình!{trang}")
+        print(f"\n{COLOR_DEFAULT}=== Đã dừng chương trình! ==={trang}")
 
 if __name__ == "__main__":
     main()
