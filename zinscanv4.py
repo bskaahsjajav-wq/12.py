@@ -982,7 +982,7 @@ class ZinApp:
 
         is_random = (prefixes == "RANDOM")
         if is_random:
-            print(f"  {C.MAGENTA}🎲 Random mix tất cả series "
+            print(f"  {C.VIOLET}🎲 Random mix tất cả series "
                   f"(2005-2012){C.R}")
         else:
             print(f"  {C.GRAY}Body length: {body_len} chữ số{C.R}")
