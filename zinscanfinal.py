@@ -69,7 +69,7 @@ CONFIG = {
     "smart_passwords": True,
     "notify_webhook": "",
     "webhook_timeout": 10.0,
-    "save_formats": ["txt", "json", "csv"],
+    "save_formats": ["txt"],
     "max_limit": 1_000_000,
     "verify_tls": True,
     "dry_run": False,
@@ -134,7 +134,7 @@ def print_logo():
     print()
     print("  " + rainbow_border("✦", 58))
     print()
-    centered_box("ZIN TOOL SCAN - VHCT", width=58)
+    centered_box("ZIN TOOL SCAN - VĨNH HẰNG CHÍ TÔN", width=58)
     print()
     print("  " + rainbow_border("✦", 58, palette=RAINBOW2))
     print()
@@ -948,7 +948,7 @@ class ZinApp:
             print(f"  {C.YELLOW}{C.B}[ ! ]{C.R} "
                   f"{C.YELLOW}DRY-RUN — KHÔNG GỬI REQUEST THẬT{C.R}")
         mini_sep()
-        print(f"  {C.GOLD}{C.B}⚡ ZIN TOOL SCAN - VHCT{C.R}")
+        print(f"  {C.GOLD}{C.B}⚡ ZIN TOOL SCAN - VĨNH HẰNG THIÊN TÔN{C.R}")
         mini_sep()
         print()
 
